@@ -2,8 +2,12 @@
 title: "YAML metadata for R Markdown with examples"
 date: "`r Sys.Date()`"
 output:
+  md_document:
+    toc: yes
   rmdformats::downcute:
     self_contained: no
+  pdf_document:
+    toc: yes
 ---
 
 
