@@ -8,6 +8,7 @@ output:
     self_contained: no
   pdf_document:
     toc: yes
+bibliography: Ref.bib
 ---
 
 
@@ -51,6 +52,12 @@ Rmd makes it possible to use a YAML header to specify certain parameters right a
 -   YAML -- /ˈjæməl/ a recursive acronym for "YAML Ain't Markup Language"
 -   YAML header/metadata -- the settings data written by YAML in Rmd header
 -   All the YAML metadata are lower case letters except file paths or file names
+
+# Basic
+
+## Syntaxy
+
+ymlthis package[@Barrett2021]
 
 
 # to be continued...

@@ -2,6 +2,9 @@
 -   [Useful websites](#useful-websites)
 -   [useful tools](#useful-tools)
 -   [Terminology and norms](#terminology-and-norms)
+-   [Basic](#basic)
+    -   [Syntax](#syntax)
+-   [to be continued…](#to-be-continued)
 
 # About the project
 
@@ -38,3 +41,15 @@ clear and enough materials for that.
     header
 -   All the YAML metadata are lower case letters except file paths or
     file names
+
+# Basic
+
+## Syntax
+
+参考(Barrett and Iannone 2021)
+
+# to be continued…
+
+Barrett, Malcolm, and Richard Iannone. 2021. *Ymlthis: Write ’YAML’ for
+’r Markdown’, ’Bookdown’, ’Blogdown’, and More*.
+<https://CRAN.R-project.org/package=ymlthis>.
