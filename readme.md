@@ -203,49 +203,86 @@ Set Top-level Basic R Markdown YAML Fields. e.g.
 This field is not available in all output formats. It is available in:
 
 <table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 15%" />
+<col style="width: 14%" />
+<col style="width: 15%" />
+<col style="width: 14%" />
+<col style="width: 26%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>field</th>
 <th>html_document</th>
 <th>pdf_document</th>
 <th>word_document</th>
-<th></th>
+<th>odt_document</th>
+<th>powerpoint_presentation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>subtitle</td>
 <td>:smiley:</td>
-<td></td>
+<td>:smiley:</td>
+<td>:smiley:</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>abstract</td>
-<td>line3</td>
-<td>column 3</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
+<td>keywords</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+</tr>
+<tr class="even">
+<td>subject</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+</tr>
+<tr class="odd">
+<td>description</td>
 <td></td>
 <td></td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+</tr>
+<tr class="even">
+<td>category</td>
 <td></td>
 <td></td>
+<td>:smiley:</td>
 <td></td>
+<td>:smiley:</td>
+</tr>
+<tr class="odd">
+<td>lang</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
+<td>:smiley:</td>
 </tr>
 </tbody>
 </table>
 
-    | field    | html_document | pdf_document | word_document | odt_document | powerpoint_presentation |
-    | -------- | ------------- | ------------ | ------------- | ------------ | ----------------------- |
-    | subtitle |               |              |               |              |                         |
-    | abstract | line3         | column 3     |               |              |                         |
-    |          |               |              |               |              |                         |
-    |          |               |              |               |              |                         |
-
--   subtitle – pdf\_document, html\_document, and word\_document
--   abstract – pdf\_document, html\_document
+The document language using IETF language tags such as “en” or “en-US.”
+The Language subtag lookup tool can help find the appropriate tag.
 
 # Updating…
 

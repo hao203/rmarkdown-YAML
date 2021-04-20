@@ -1,7 +1,8 @@
 ---
 title: "YAML metadata for R Markdown with examples"
-author: Hao Liang
+author: "Hao Liang"
 date: "`r Sys.Date()`"
+affiliation: HNUCM
 output:
   md_document:
     toc: yes
@@ -9,10 +10,14 @@ output:
   rmdformats::downcute:
     self_contained: no
     highlight: tango
-  pdf_document: 
+  pdf_document:
     toc: yes
     latex_engine: xelatex
     highlight: tango
+  html_document:
+    toc: yes
+    toc_depth: '2'
+    df_print: paged
 bibliography: Ref.bib
 ---
 
@@ -182,6 +187,50 @@ R code can be written as inline expressions `` `r knitr::inline_expr('expr')` ``
 author: '`r whoami::fullname()`'
 params:
   date: !r Sys.Date()
-```d
+```
+
+## Basic setting metadata
+
+### Top-level basic settings
+
+These settings are based on the original `rmarkdown` package without any other associated packages.
+
+Set Top-level Basic R Markdown YAML Fields. e.g.
+
+```yaml
+---
+title: "YAML metadata for R Markdown with examples"
+subtitle: "YAML header"
+author: Hao Liang
+date: "`r Sys.Date()`"
+output:
+  md_document:
+    toc: yes
+    toc_depth: 2
+abstract: YAML is a human-readable and easy to write language to define data structures.
+keywords: ["YAML", "Rmd"]
+subject: Medicine
+description: Rmd makes it possible to use a YAML header to specify certain parameters right at the beginning of the document.
+category: 
+ - Rmd
+ - Medicine
+lang: "en-US" 
+---
+```
+
+This field is not available in all output formats. It is available in:
+
+| field       | html_document | pdf_document | word_document | odt_document | powerpoint_presentation |
+|-------------|---------------|--------------|---------------|--------------|-------------------------|
+| subtitle    | :smiley:      | :smiley:     | :smiley:      |              |                         |
+| abstract    | :smiley:      | :smiley:     |               |              |                         |
+| keywords    | :smiley:      | :smiley:     | :smiley:      | :smiley:     | :smiley:                |
+| subject     | :smiley:      | :smiley:     | :smiley:      | :smiley:     | :smiley:                |
+| description |               |              | :smiley:      | :smiley:     | :smiley:                |
+| category    |               |              | :smiley:      |              | :smiley:                |
+| lang        | :smiley:      | :smiley:     | :smiley:      | :smiley:     | :smiley:                |
+
+	
+The document language using IETF language tags such as "en" or "en-US". The Language subtag lookup tool can help find the appropriate tag.
 
 # Updating...
