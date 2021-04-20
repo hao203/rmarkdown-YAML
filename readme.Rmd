@@ -69,59 +69,65 @@ Source: ymlthis package[@Barrett2021] vignette
 A YAML code block should be fenced in with `---` before and after (you can also use ... to end the YAML block, but this is not very common in R Markdown).
 
 1. Scalars, or variables, are defined using a colon and a **space**.A dictionary is represented in a simples `key: value` form (the colon must be followed by a `space`)
-  ```yaml
-  ---
-  title: "YAML metadata for R Markdown with examples"
-  author: Hao Liang
-  fontsize: 12pt
-  ---
-  ```  
-2. All members of a list are lines beginning at the same indentation level starting with a `'- '` (a dash and a space):
-  ```yaml
-  # A list of tasty fruits
-  - Apple
-  - Orange
-  - Strawberry
-  - Mango
+    
+    ```yaml
+    ---
+    title: "YAML metadata for R Markdown with examples"
+    author: Hao Liang
+    fontsize: 12pt
+    ---
+    ```
   
-  # OR
-  [Apple, Orange, Strawberry, Mango]
-  ```  
+2. All members of a list are lines beginning at the same indentation level starting with a `'- '` (a dash and a space):
+
+    ```yaml
+    # A list of tasty fruits
+    - Apple
+    - Orange
+    - Strawberry
+    - Mango
+    
+    # OR
+    [Apple, Orange, Strawberry, Mango]
+    ```
+
 3. More complicated data structures are possible, such as lists of dictionaries, dictionaries whose values are lists or a mix of both:
-  ```yaml
-  author: 
-   - Name_1   # can be indented or not
-   - Name_2   # but be consistent among different entries
-  ```
+
+    ```yaml
+    author: 
+     - Name_1   # can be indented or not
+     - Name_2   # but be consistent among different entries
+    ```
+  
 4. Dictionaries and lists can also be represented in an abbreviated form if you really want to:
 
-```yaml
-author: [Name_1, Name_2]
-```
+    ```yaml
+    author: [Name_1, Name_2]
+    ```
 
 5. Strings can be denoted with a `|` character, which preserves newlines, or a `>` character, which folds newlines.
 
-```yaml
-abstract: |
-  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
-  
-  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+    ```yaml
+    abstract: |
+      One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
+      
+      Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
+    
+      
+    abstract: >
+      One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
+      
+      Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
 
-  
-abstract: >
-  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
-  
-  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
-
-```
+    ```
 
 6. Logical values in YAML are unusual: `true/false`, `yes/no`, and `on/off` are all equivalent to TRUE/FALSE in R. Any of these turn on the table of contents:
 
-```yaml
-toc: true
-toc: yes
-toc: on
-```
+    ```yaml
+    toc: true
+    toc: yes
+    toc: on
+    ```
 
 ### Indent
 

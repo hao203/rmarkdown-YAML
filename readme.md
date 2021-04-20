@@ -58,69 +58,57 @@ Markdown).
     dictionary is represented in a simples `key: value` form (the colon
     must be followed by a `space`)
 
-<!-- -->
+        ---
+        title: "YAML metadata for R Markdown with examples"
+        author: Hao Liang
+        fontsize: 12pt
+        ---
 
-    ---
-    title: "YAML metadata for R Markdown with examples"
-    author: Hao Liang
-    fontsize: 12pt
-    ---
-
-1.  All members of a list are lines beginning at the same indentation
+2.  All members of a list are lines beginning at the same indentation
     level starting with a `'- '` (a dash and a space):
 
-<!-- -->
+        # A list of tasty fruits
+        - Apple
+        - Orange
+        - Strawberry
+        - Mango
 
-    # A list of tasty fruits
-    - Apple
-    - Orange
-    - Strawberry
-    - Mango
+        # OR
+        [Apple, Orange, Strawberry, Mango]
 
-    # OR
-    [Apple, Orange, Strawberry, Mango]
-
-1.  More complicated data structures are possible, such as lists of
+3.  More complicated data structures are possible, such as lists of
     dictionaries, dictionaries whose values are lists or a mix of both:
 
-<!-- -->
+        author: 
+         - Name_1   # can be indented or not
+         - Name_2   # but be consistent among different entries
 
-    author: 
-     - Name_1   # can be indented or not
-     - Name_2   # but be consistent among different entries
-
-1.  Dictionaries and lists can also be represented in an abbreviated
+4.  Dictionaries and lists can also be represented in an abbreviated
     form if you really want to:
 
-<!-- -->
+        author: [Name_1, Name_2]
 
-    author: [Name_1, Name_2]
-
-1.  Strings can be denoted with a `|` character, which preserves
+5.  Strings can be denoted with a `|` character, which preserves
     newlines, or a `>` character, which folds newlines.
 
-<!-- -->
+        abstract: |
+          One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
 
-    abstract: |
-      One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
-      
-      Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+          Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
 
-      
-    abstract: >
-      One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
-      
-      Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
 
-1.  Logical values in YAML are unusual: `true/false`, `yes/no`, and
+        abstract: >
+          One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
+
+          Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
+
+6.  Logical values in YAML are unusual: `true/false`, `yes/no`, and
     `on/off` are all equivalent to TRUE/FALSE in R. Any of these turn on
     the table of contents:
 
-<!-- -->
-
-    toc: true
-    toc: yes
-    toc: on
+        toc: true
+        toc: yes
+        toc: on
 
 ### Indent
 
