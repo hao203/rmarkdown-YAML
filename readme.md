@@ -4,6 +4,7 @@
 -   [Terminology and norms](#terminology-and-norms)
 -   [Basic](#basic)
     -   [Syntax](#syntax)
+    -   [Basic setting metadata](#basic-setting-metadata)
 -   [Updating…](#updating)
 
 # About the project
@@ -167,7 +168,84 @@ will capture R code for you and put it in a valid format. R code in
 `params` needs to be slightly different: use `!r`(e.g. `!r expr`) to
 call an R object.
 
-`yaml author: 'liang' params:   date: !r Sys.Date()`d
+    author: 'liang'
+    params:
+      date: !r Sys.Date()
+
+## Basic setting metadata
+
+### Top-level basic settings
+
+These settings are based on the original `rmarkdown` package without any
+other associated packages.
+
+Set Top-level Basic R Markdown YAML Fields. e.g.
+
+    ---
+    title: "YAML metadata for R Markdown with examples"
+    subtitle: "YAML header"
+    author: Hao Liang
+    date: "2021-04-20"
+    output:
+      md_document:
+        toc: yes
+        toc_depth: 2
+    abstract: YAML is a human-readable and easy to write language to define data structures.
+    keywords: ["YAML", "Rmd"]
+    subject: Medicine
+    description: Rmd makes it possible to use a YAML header to specify certain parameters right at the beginning of the document.
+    category: 
+     - Rmd
+     - Medicine
+    lang: "en-US" 
+    ---
+
+This field is not available in all output formats. It is available in:
+
+<table>
+<thead>
+<tr class="header">
+<th>field</th>
+<th>html_document</th>
+<th>pdf_document</th>
+<th>word_document</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>subtitle</td>
+<td>:smiley:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>abstract</td>
+<td>line3</td>
+<td>column 3</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+    | field    | html_document | pdf_document | word_document | odt_document | powerpoint_presentation |
+    | -------- | ------------- | ------------ | ------------- | ------------ | ----------------------- |
+    | subtitle |               |              |               |              |                         |
+    | abstract | line3         | column 3     |               |              |                         |
+    |          |               |              |               |              |                         |
+    |          |               |              |               |              |                         |
+
+-   subtitle – pdf\_document, html\_document, and word\_document
+-   abstract – pdf\_document, html\_document
 
 # Updating…
 
