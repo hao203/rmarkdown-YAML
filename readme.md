@@ -4,7 +4,7 @@
 -   [Terminology and norms](#terminology-and-norms)
 -   [Basic](#basic)
     -   [Syntax](#syntax)
--   [to be continued…](#to-be-continued)
+-   [Updating…](#updating)
 
 # About the project
 
@@ -55,7 +55,7 @@ can also use … to end the YAML block, but this is not very common in R
 Markdown).
 
 1.  Scalars, or variables, are defined using a colon and a **space**.A
-    dictionary is represented in a simple `key: value` form (the colon
+    dictionary is represented in a simples `key: value` form (the colon
     must be followed by a `space`)
 
 <!-- -->
@@ -85,7 +85,7 @@ Markdown).
 
 <!-- -->
 
-    author:
+    author: 
      - Name_1   # can be indented or not
      - Name_2   # but be consistent among different entries
 
@@ -112,9 +112,11 @@ Markdown).
       
       Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
 
-Logical values in YAML are unusual: `true/false`, `yes/no`, and `on/off`
-are all equivalent to TRUE/FALSE in R. Any of these turn on the table of
-contents:
+1.  Logical values in YAML are unusual: `true/false`, `yes/no`, and
+    `on/off` are all equivalent to TRUE/FALSE in R. Any of these turn on
+    the table of contents:
+
+<!-- -->
 
     toc: true
     toc: yes
@@ -122,10 +124,11 @@ contents:
 
 ### Indent
 
-In YAML, spaces(indent) are used to indicate nesting. When we want to
-specify the output function `pdf_document(toc = TRUE)`, we need to nest
-it under the `output` field. We also need to nest `toc` under
-pdf\_document so that it gets passed to that function correctly.
+In YAML, spaces(indent) are used to indicate nesting (`tab` is not
+recommended.). When we want to specify the output function
+`pdf_document(toc = TRUE)`, we need to nest it under the `output` field.
+We also need to nest `toc` under pdf\_document so that it gets passed to
+that function correctly.
 
     ---
     output:
@@ -136,8 +139,8 @@ pdf\_document so that it gets passed to that function correctly.
 In R, the equivalent structure is a nested list, each with a name:
 `list(output = list(pdf_document = list(toc = TRUE)))`. Similarly, you
 can call this in R Markdown using the metadata object,
-e.g. metadata*o**u**t**p**u**t*pdf\_document$toc. The hierarchical
-structure (which you can see with `draw_yml_tree()`) looks like this:
+e.g. `metadata$output$pdf_document$toc`. The hierarchical structure
+(which you can see with `draw_yml_tree()`) looks like this:
 
     └── output:
         └── pdf_document:
@@ -157,7 +160,7 @@ looks like this:
 
 Some YAML fields take unnamed vectors as their value. You can specify an
 element of the vector by adding a new line and - (note that the values
-are not indented below category here).
+can be indented or not below category here).
 
     category:
     - R
@@ -176,11 +179,9 @@ will capture R code for you and put it in a valid format. R code in
 `params` needs to be slightly different: use `!r`(e.g. `!r expr`) to
 call an R object.
 
-    author: 'liang'
-    params:
-      date: !r Sys.Date()
+`yaml author: 'liang' params:   date: !r Sys.Date()`d
 
-# to be continued…
+# Updating…
 
 Barrett, Malcolm, and Richard Iannone. 2021. *Ymlthis: Write ’YAML’ for
 ’r Markdown’, ’Bookdown’, ’Blogdown’, and More*.
