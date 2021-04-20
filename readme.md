@@ -16,9 +16,14 @@
 -   [Bibliographies and Citations](#bibliographies-and-citations)
 -   [Chinese support](#chinese-support)
 -   [params](#params)
+-   [Pandoc arguments](#pandoc-arguments)
+-   [shared options](#shared-options)
 -   [Updating…](#updating)
 
 # YAML metadata (header) in R Markdown
+
+YAML is a human-readable and easy to write language to define data
+structures.
 
 Rmd makes it possible to use a YAML header to specify certain parameters
 right at the beginning of the document. Built-in YAML parameters make it
@@ -374,9 +379,43 @@ example:
 
 # advanced options for html and pdf
 
+R Markdown stands on the shoulders of `knitr` and Pandoc(**xie2020?**).
+html and pdf are the most common formats outputted by R Markdown, most
+other formats are also transformed from them. From the figure below, we
+clearly see the difference for generating html and pdf. .md files can be
+directly converted to html, but md -&gt; pdf is time-consuming and
+depends on tex. So the options for these two formats are not alwasys
+compatible.
+
 ![source:<https://yongfu.name/2019-fju-rmd-talk/slide/#1>](images/htmlvpdf.png)
 
 ## html
+
+If code blocks in the output document are potentially distracting to
+readers, you may choose to fold/show them initially. Readers can then
+choose to display them by clicking the fold buttons:
+
+    ---
+    output:
+      html_document:
+        code_folding: hide #choose to hide/show code blocks initially.
+        number_sections: true # add section numbering to headers
+        theme: united # Bootstrap theme (themes are drawn from the Bootswatch theme library)
+        highlight: tango #specifies the syntax highlighting style
+        css: styles.css # custom CSS ( set the theme and potentially highlight to null)
+        fig_width: 7 # Figure options
+        fig_height: 6
+        fig_caption: true
+        df_print: paged # tables are printed as HTML tables with support for pagination
+        self_contained: false # keep dependencies in external files
+        keep_md: true # keep a copy of the Markdown file
+        includes:
+          in_header: header.html # inject CSS and JavaScript code into the <head> tag
+          before_body: doc_prefix.html # include a header that shows a banner or logo.
+          after_body: doc_suffix.html # include a footer
+        template: quarterly_report.html # custom templates
+        md_extensions: -autolink_bare_uris+hard_line_breaks # preface an option with '-' to disable and '+' to enable itpreface an option with - to disable and + to enable it
+    ---
 
 ## pdf
 
@@ -395,6 +434,20 @@ example:
 # Chinese support
 
 # params
+
+# Pandoc arguments
+
+# shared options
+
+If you want to specify a set of default options to be shared by multiple
+documents within a directory, you can include a file named \_output.yml
+within the directory. Note that no YAML delimiters (—) or the enclosing
+output field are used in this file. For example:
+
+    html_document:
+      self_contained: false
+      theme: united
+      highlight: textmate
 
 # Updating…
 
