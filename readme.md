@@ -1,20 +1,31 @@
--   [About the project](#about-the-project)
+-   [YAML metadata (header) in R
+    Markdown](#yaml-metadata-header-in-r-markdown)
 -   [Useful websites](#useful-websites)
 -   [useful tools](#useful-tools)
 -   [Terminology and norms](#terminology-and-norms)
 -   [Basic](#basic)
     -   [Syntax](#syntax)
     -   [Basic setting metadata](#basic-setting-metadata)
+-   [advanced options for html and
+    pdf](#advanced-options-for-html-and-pdf)
+    -   [html](#html)
+    -   [pdf](#pdf)
+-   [style control](#style-control)
+    -   [html](#html-1)
+    -   [pdf](#pdf-1)
+-   [Bibliographies and Citations](#bibliographies-and-citations)
+-   [Chinese support](#chinese-support)
+-   [params](#params)
 -   [Updating…](#updating)
 
-# About the project
+# YAML metadata (header) in R Markdown
 
 Rmd makes it possible to use a YAML header to specify certain parameters
 right at the beginning of the document. Built-in YAML parameters make it
 easier to create more organized and informative reports. However, there
 are few tutorials or summarized articles to display all the settings and
 parameters for `YAML metadata` in R Markdown. This readme file give you
-clear and enough materials for that.
+the power to easily control R Markdown by YAML.
 
 # Useful websites
 
@@ -40,7 +51,7 @@ clear and enough materials for that.
 -   YAML – /ˈjæməl/ a recursive acronym for “YAML Ain’t Markup Language”
 -   YAML header/metadata – the settings data written by YAML in Rmd
     header
--   All the YAML metadata are lower case letters except file paths or
+-   All the YAML metadata are `lower case letters` except file paths or
     file names
 
 # Basic
@@ -282,10 +293,114 @@ This field is not available in all output formats. It is available in:
 </table>
 
 The document language using IETF language tags such as “en” or “en-US.”
-The Language subtag lookup tool can help find the appropriate tag.
+The [language subtag lookup tool](https://r12a.github.io/app-subtags/)
+can help find the appropriate tag.
+
+> Certain R Markdown templates will allow you to specify additional
+> parameters directly within the YAML. For example, the Distill output
+> format allows url, affiliation, and affiliation\_url to be specified.
+> After you install the distill package. You can see the corresponding
+> section in this tutorial.
+
+    ---
+    title: "Distill for R Markdown"
+    author:
+      - name: "JJ Allaire"
+        url: https://github.com/jjallaire
+        affiliation: RStudio
+        affiliation_url: https://www.rstudio.com
+    output: distill::distill_article
+    ---
+
+### output
+
+The `output` field of YAML is very important for R Markdown. The
+`rmarkdown` package contains a lot of output formats for different use.
+
+Source: <https://rmarkdown.rstudio.com/lesson-9.html>
+
+    ---
+    output: html_notebook
+    ---
+
+The `rmarkdown` package/ Rmd natively support the following formats:
+
+-   html\_notebook
+-   html\_document
+-   pdf\_document
+-   word\_document
+-   odt\_document
+-   rtf\_document
+-   md\_document
+-   ioslides\_presentation
+-   beamer\_presentation
+-   powerpoint\_presentation
+-   html\_vignette
+
+If you use one output format without additional arguments, the value of
+output can simply be the name of the function.
+
+    ---
+    output: html_document
+    ---
+
+However, if you’re specifying more than one output type, you must use
+the nesting syntax. If you don’t want to include additional arguments,
+use “default” as the function’s value.
+
+    ---
+    output:
+      html_document: default
+      pdf_document: default
+    ---
+
+### toc
+
+`toc` is the sub-level option of any output formats. You can add a table
+of contents (TOC) using the `toc` option and specify the depth of
+headers that it applies to using the `toc_depth` option(Xie 2018). For
+example:
+
+    ---
+    title: "Habits"
+    output:
+      html_document:
+        toc: true
+        toc_depth: 2
+        toc_float: # invalid for other output formats of non-html
+          collapsed: false
+          smooth_scroll: false
+    ---
+
+# advanced options for html and pdf
+
+![source:<https://yongfu.name/2019-fju-rmd-talk/slide/#1>](images/htmlvpdf.png)
+
+## html
+
+## pdf
+
+# style control
+
+## html
+
+## pdf
+
+### header-includes:
+
+# Bibliographies and Citations
+
+<https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>
+
+# Chinese support
+
+# params
 
 # Updating…
 
 Barrett, Malcolm, and Richard Iannone. 2021. *Ymlthis: Write ’YAML’ for
 ’r Markdown’, ’Bookdown’, ’Blogdown’, and More*.
 <https://CRAN.R-project.org/package=ymlthis>.
+
+Xie, Yihui. 2018. *R Markdown: The Definitive Guide*.
+<https://doi.org/10.1201/9781138359444>.

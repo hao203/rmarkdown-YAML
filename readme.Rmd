@@ -7,12 +7,12 @@ output:
   md_document:
     toc: yes
     toc_depth: 2
-  rmdformats::downcute:
-    self_contained: no
-    highlight: tango
   pdf_document:
     toc: yes
     latex_engine: xelatex
+    highlight: tango
+  rmdformats::downcute:
+    self_contained: no
     highlight: tango
   html_document:
     toc: yes
@@ -38,9 +38,9 @@ opts_chunk$set(echo=FALSE,
 opts_knit$set(width=75)
 ```
 
-# About the project
+# YAML metadata (header) in R Markdown
 
-Rmd makes it possible to use a YAML header to specify certain parameters right at the beginning of the document. Built-in YAML parameters make it easier to create more organized and informative reports. However, there are few tutorials or summarized articles to display all the settings and parameters for `YAML metadata` in R Markdown. This readme file give you clear and enough materials for that.
+Rmd makes it possible to use a YAML header to specify certain parameters right at the beginning of the document. Built-in YAML parameters make it easier to create more organized and informative reports. However, there are few tutorials or summarized articles to display all the settings and parameters for `YAML metadata` in R Markdown. This readme file give you the power to easily control R Markdown by YAML.
 
 # Useful websites
 
@@ -61,7 +61,7 @@ Rmd makes it possible to use a YAML header to specify certain parameters right a
 -   rmarkdown -- the package of `rmarkdown`
 -   YAML -- /ˈjæməl/ a recursive acronym for "YAML Ain't Markup Language"
 -   YAML header/metadata -- the settings data written by YAML in Rmd header
--   All the YAML metadata are lower case letters except file paths or file names
+-   All the YAML metadata are `lower case letters` except file paths or file names
 
 # Basic
 
@@ -231,6 +231,110 @@ This field is not available in all output formats. It is available in:
 | lang        | :smiley:      | :smiley:     | :smiley:      | :smiley:     | :smiley:                |
 
 	
-The document language using IETF language tags such as "en" or "en-US". The Language subtag lookup tool can help find the appropriate tag.
+The document language using IETF language tags such as "en" or "en-US". The [language subtag lookup tool](https://r12a.github.io/app-subtags/) can help find the appropriate tag.
+
+> Certain R Markdown templates will allow you to specify additional parameters directly within the YAML. For example, the Distill output format allows url, affiliation, and affiliation_url to be specified. After you install the distill package. You can see the corresponding section in this tutorial.
+
+```yaml
+---
+title: "Distill for R Markdown"
+author:
+  - name: "JJ Allaire"
+    url: https://github.com/jjallaire
+    affiliation: RStudio
+    affiliation_url: https://www.rstudio.com
+output: distill::distill_article
+---
+```
+
+### output
+
+The `output` field of YAML is very important for R Markdown. The `rmarkdown` package contains a lot of output formats for different use.
+
+Source: https://rmarkdown.rstudio.com/lesson-9.html
+
+```yaml
+---
+output: html_notebook
+---
+
+```
+
+The `rmarkdown` package/ Rmd natively support the following formats:
+
+  - html_notebook
+  - html_document
+  - pdf_document
+  - word_document
+  - odt_document
+  - rtf_document
+  - md_document
+  - ioslides_presentation
+  - beamer_presentation
+  - powerpoint_presentation
+  - html_vignette
+
+If you use one output format without additional arguments, the value of output can simply be the name of the function.
+
+```yaml
+---
+output: html_document
+---
+```
+
+However, if you’re specifying more than one output type, you must use the nesting syntax. If you don’t want to include additional arguments, use "default" as the function’s value.
+
+```yaml
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+```
+
+### toc
+
+`toc` is the sub-level option of any output formats. You can add a table of contents (TOC) using the `toc` option and specify the depth of headers that it applies to using the `toc_depth` option[@Xie2018]. For example:
+
+```yaml
+---
+title: "Habits"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: # invalid for other output formats of non-html
+      collapsed: false
+      smooth_scroll: false
+---
+```
+
+
+
+# advanced options for html and pdf
+
+![source:https://yongfu.name/2019-fju-rmd-talk/slide/#1](images/htmlvpdf.png)
+
+## html
+
+## pdf
+
+# style control
+
+## html
+
+## pdf
+
+### header-includes:
+
+# Bibliographies and Citations
+
+https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+
+# Chinese support
+
+# params
+
+
 
 # Updating...
