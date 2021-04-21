@@ -442,7 +442,7 @@ html full YAML example:
 Many aspects of the LaTeX template used to create PDF documents can be
 customized using top-level YAML metadata (note that these options do not
 appear underneath the output section, but rather appear at the top level
-along with title, author, and so on)(**xie2018?**). For example:
+along with title, author, and so on)(Xie 2018). For example:
 
     ---
     output: pdf_document

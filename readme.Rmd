@@ -4,15 +4,15 @@ author: "Hao Liang"
 date: "`r Sys.Date()`"
 affiliation: HNUCM
 output:
-  md_document:
-    toc: yes
-    toc_depth: 2
-  rmdformats::downcute:
-    highlight: tango
   pdf_document:
     toc: yes
     latex_engine: xelatex
     highlight: tango
+  rmdformats::downcute:
+    highlight: tango
+  md_document:
+    toc: yes
+    toc_depth: 2
   html_document:
     toc: yes
     toc_depth: '2'
@@ -373,7 +373,7 @@ output:
 ```
 ### pdf top-level YAML example
 
-Many aspects of the LaTeX template used to create PDF documents can be customized using top-level YAML metadata (note that these options do not appear underneath the output section, but rather appear at the top level along with title, author, and so on)[@xie2018]. For example:
+Many aspects of the LaTeX template used to create PDF documents can be customized using top-level YAML metadata (note that these options do not appear underneath the output section, but rather appear at the top level along with title, author, and so on)[@Xie2018]. For example:
 
 
 ```yaml
