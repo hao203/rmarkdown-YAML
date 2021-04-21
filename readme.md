@@ -12,6 +12,10 @@
     -   [pdf](#pdf)
 -   [Bibliographies and Citations](#bibliographies-and-citations)
 -   [Chinese support](#chinese-support)
+-   [Future work](#future-work)
+    -   [params](#params)
+    -   [Pandoc arguments](#pandoc-arguments)
+    -   [shared options](#shared-options)
 
 # YAML metadata (header) in R Markdown
 
@@ -534,19 +538,19 @@ header.tex
       - \usepackage{ctex}
     ---
 
+# Future work
 
-    # Future work
+## params
 
-    ## params
+## Pandoc arguments
 
+## shared options
 
-    ## Pandoc arguments
+If you want to specify a set of default options to be shared by multiple
+documents within a directory, you can include a file named \_output.yml
+within the directory. Note that no YAML delimiters (—) or the enclosing
+output field are used in this file. For example:
 
-    ## shared options
-
-    If you want to specify a set of default options to be shared by multiple documents within a directory, you can include a file named _output.yml within the directory. Note that no YAML delimiters (---) or the enclosing output field are used in this file. For example:
-
-    ```yaml
     html_document:
       self_contained: false
       theme: united

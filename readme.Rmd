@@ -4,15 +4,15 @@ author: "Hao Liang"
 date: "`r Sys.Date()`"
 affiliation: HNUCM
 output:
-  md_document:
-    toc: yes
-    toc_depth: 2
-  rmdformats::downcute:
-    highlight: tango
   pdf_document:
     toc: yes
     latex_engine: xelatex
     highlight: tango
+  rmdformats::downcute:
+    highlight: tango
+  md_document:
+    toc: yes
+    toc_depth: 2
   html_document:
     toc: yes
     toc_depth: '2'
@@ -472,7 +472,7 @@ output: pdf_document
 header-includes:
   - \usepackage{ctex}
 ---
-
+```
 
 # Future work
 
