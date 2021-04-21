@@ -10,9 +10,6 @@
     pdf](#advanced-options-for-html-and-pdf)
     -   [html](#html)
     -   [pdf](#pdf)
--   [style control](#style-control)
-    -   [html](#html-1)
-    -   [pdf](#pdf-1)
 -   [Bibliographies and Citations](#bibliographies-and-citations)
 -   [Chinese support](#chinese-support)
 -   [params](#params)
@@ -201,7 +198,7 @@ Set Top-level Basic R Markdown YAML Fields. e.g.
     title: "YAML metadata for R Markdown with examples"
     subtitle: "YAML header"
     author: Hao Liang
-    date: "2021-04-20"
+    date: "2021-04-21"
     output:
       md_document:
         toc: yes
@@ -384,16 +381,15 @@ html and pdf are the most common formats outputted by R Markdown, most
 other formats are also transformed from them. From the figure below, we
 clearly see the difference for generating html and pdf. .md files can be
 directly converted to html, but md -&gt; pdf is time-consuming and
-depends on tex. So the options for these two formats are not alwasys
-compatible.
+depends on tex(R Markdown documents are converted to PDF by first
+converting to a TeX file and then calling the LaTeX engine to convert to
+PDF. ). So the options for these two formats are not always compatible.
 
 ![source:<https://yongfu.name/2019-fju-rmd-talk/slide/#1>](images/htmlvpdf.png)
 
 ## html
 
-If code blocks in the output document are potentially distracting to
-readers, you may choose to fold/show them initially. Readers can then
-choose to display them by clicking the fold buttons:
+html full YAML example:
 
     ---
     output:
@@ -413,19 +409,69 @@ choose to display them by clicking the fold buttons:
           in_header: header.html # inject CSS and JavaScript code into the <head> tag
           before_body: doc_prefix.html # include a header that shows a banner or logo.
           after_body: doc_suffix.html # include a footer
-        template: quarterly_report.html # custom templates
+        template: template.html # custom templates
         md_extensions: -autolink_bare_uris+hard_line_breaks # preface an option with '-' to disable and '+' to enable itpreface an option with - to disable and + to enable it
     ---
 
 ## pdf
 
-# style control
+### pdf full YAML example for output:
 
-## html
+    ---
+    output:
+      pdf_document:
+        toc: true
+        number_sections: true
+        fig_width: 7
+        fig_height: 6
+        fig_caption: true
+        df_print: kable # print.data.frame(default)/kable/tibble
+        highlight: tango
+        latex_engine: xelatex # try to use xelatex as default
+        keep_tex: true
+        keep_tex: true
+        template: template.tex
+        includes:
+          in_header: preamble.tex
+          before_body: doc-prefix.tex
+          after_body: doc-suffix.tex
+    ---
 
-## pdf
+### pdf top-level YAML example
+
+Many aspects of the LaTeX template used to create PDF documents can be
+customized using top-level YAML metadata (note that these options do not
+appear underneath the output section, but rather appear at the top level
+along with title, author, and so on)(**xie2018?**). For example:
+
+    ---
+    output: pdf_document
+    fontsize: 11pt
+    geometry: margin=1in
+    documentclass: ctexart # usually one of the standard classes, article, book, and report
+    classoption:
+     - twocolumn
+     - landscape
+    linestretch: 2 adjusts line spacing using the setspace package, e.g. 1.25, 1.5
+    indent: true 
+    papersize: a4 # paper size, e.g. letter, a4
+    ---
+
+consult the Pandoc manual for the [full
+list](https://pandoc.org/MANUAL.html#variables-for-latex)
 
 ### header-includes:
+
+    ---
+    output: pdf_document
+    header-includes:
+     - \usepackage{fancyhdr}
+     - \pagestyle{fancy}
+     - \fancyhead[L]{MANUSCRIPT AUTHORS}
+     - \fancyhead[R]{MANUSCRIPT SHORT TITLE}
+     - \usepackage{lineno}
+     - \linenumbers
+    ---
 
 # Bibliographies and Citations
 
