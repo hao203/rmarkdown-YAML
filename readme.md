@@ -584,7 +584,7 @@ include variables as key-value pairs:
       timezone: "US/Eastern"
     title: "Twitter Coverage of "
     author: "Neil Saunders"
-    date: "2021-04-22 18:52:17"
+    date: "2021-04-22 18:56:03"
     output:
       github_document
     ---
@@ -624,7 +624,7 @@ Or passed it in with the -M command-line flag.
       word_document:
         toc: true
         pandoc_args: [
-          "-M", "toc-title=Table des matières"
+          "-M", "toc-title=test for document metadata"
         ]
     ---
 
