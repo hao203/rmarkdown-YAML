@@ -11,11 +11,13 @@
     -   [html](#html)
     -   [pdf](#pdf)
 -   [Bibliographies and Citations](#bibliographies-and-citations)
--   [Chinese support](#chinese-support)
--   [Future work](#future-work)
+-   [Chinese/Japanese support](#chinesejapanese-support)
+-   [parameters and arguments](#parameters-and-arguments)
     -   [params](#params)
     -   [Pandoc arguments](#pandoc-arguments)
-    -   [shared options](#shared-options)
+-   [shared options](#shared-options)
+-   [Future work](#future-work)
+-   [Refereces](#refereces)
 
 # YAML metadata (header) in R Markdown
 
@@ -176,8 +178,7 @@ when they contain special characters like : and @.
 
     title: 'R Markdown: An Introduction'
 
-R code can be written as inline expressions `` `r expr` ``. `yml_code()`
-will capture R code for you and put it in a valid format. R code in
+R code can be written as inline expressions `` `r expr` ``. R code in
 `params` needs to be slightly different: use `!r`(e.g. `!r expr`) to
 call an R object.
 
@@ -198,7 +199,7 @@ Set Top-level Basic R Markdown YAML Fields. e.g.
     title: "YAML metadata for R Markdown with examples"
     subtitle: "YAML header"
     author: Hao Liang
-    date: "2021-04-21"
+    date: "2021-04-22"
     output:
       md_document:
         toc: yes
@@ -213,7 +214,8 @@ Set Top-level Basic R Markdown YAML Fields. e.g.
     lang: "en-US" 
     ---
 
-This field is not available in all output formats. It is available in:
+These field is not available in all output formats. Each is available
+in:
 
 <table>
 <colgroup>
@@ -302,7 +304,7 @@ can help find the appropriate tag.
 > parameters directly within the YAML. For example, the Distill output
 > format allows url, affiliation, and affiliation\_url to be specified.
 > After you install the distill package. You can see the corresponding
-> section in this tutorial.
+> section in this tutorial (still updating).
 
     ---
     title: "Distill for R Markdown"
@@ -376,14 +378,15 @@ example:
 
 # advanced options for html and pdf
 
-R Markdown stands on the shoulders of `knitr` and Pandoc(**xie2020?**).
-html and pdf are the most common formats outputted by R Markdown, most
-other formats are also transformed from them. From the figure below, we
-clearly see the difference for generating html and pdf. .md files can be
-directly converted to html, but md -&gt; pdf is time-consuming and
-depends on tex(R Markdown documents are converted to PDF by first
-converting to a TeX file and then calling the LaTeX engine to convert to
-PDF. ). So the options for these two formats are not always compatible.
+R Markdown stands on the shoulders of `knitr` and Pandoc(Xie, Dervieux,
+and Riederer 2020). html and pdf are the most common formats outputted
+by R Markdown, most other formats are also transformed from them. From
+the figure below, we clearly see the difference for generating html and
+pdf. `.md` files can be directly converted to html, but md -&gt; pdf is
+time-consuming and depends on tex(R Markdown documents are converted to
+PDF by first converting to a TeX file and then calling the LaTeX engine
+to convert to PDF. ). So the options for these two formats are not
+always compatible.
 
 ![source:<https://yongfu.name/2019-fju-rmd-talk/slide/#1>](images/htmlvpdf.png)
 
@@ -452,26 +455,50 @@ along with title, author, and so on)(Xie 2018). For example:
     classoption:
      - twocolumn
      - landscape
-    linestretch: 2 adjusts line spacing using the setspace package, e.g. 1.25, 1.5
-    indent: true 
+    linestretch: 2 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
+    indent: true  # indent paragraphs
     papersize: a4 # paper size, e.g. letter, a4
     ---
 
-consult the Pandoc manual for the [full
-list](https://pandoc.org/MANUAL.html#variables-for-latex)
+Consult the Pandoc manual for the [full
+list](https://pandoc.org/MANUAL.html#variables-for-latex) to know more.
 
 ### header-includes:
+
+Tex style and package loading can also put in `header-includes`.
 
     ---
     output: pdf_document
     header-includes:
      - \usepackage{fancyhdr}
      - \pagestyle{fancy}
-     - \usepackage{ctex}
+     - \usepackage{ctex} #TeX package for  Chinese
      - \fancyhead[L]{MANUSCRIPT AUTHORS}
      - \fancyhead[R]{MANUSCRIPT SHORT TITLE}
-     - \usepackage{lineno}
+     - \usepackage{lineno} # TeX package for line numbers
      - \linenumbers
+    ---
+
+To override or extend some CSS for just one document, include for
+example:
+
+    ---
+    output: html_document
+    header-includes: |
+      <style>
+      blockquote {
+        font-style: italic;
+      }
+      tr.even {
+        background-color: #f0f0f0;
+      }
+      td, th {
+        padding: 0.5em 2em 0.5em 0.5em;
+      }
+      tbody {
+        border-bottom: none;
+      }
+      </style>
     ---
 
 # Bibliographies and Citations
@@ -509,7 +536,7 @@ citations
         citation_package: natbib
     ---
 
-# Chinese support
+# Chinese/Japanese support
 
 html natively support Chinese characters. However, Rmd -&gt; pdf is need
 more options to display Chinese or Japanese…
@@ -532,22 +559,79 @@ header.tex
 
 2.header-includes
 
+use `header-includes` for Chinese document.
+
     ---
     output: pdf_document
     header-includes:
       - \usepackage{ctex}
     ---
 
-# Future work
+# parameters and arguments
 
 ## params
 
+Source:
+<https://www.r-bloggers.com/2019/03/using-parameters-in-rmarkdown/>
+
+You can include a `params` section in the YAML header at the top and
+include variables as key-value pairs:
+
+    ---
+    params:
+      hashtag: "#amca19"
+      max_n: 18000
+      timezone: "US/Eastern"
+    title: "Twitter Coverage of "
+    author: "Neil Saunders"
+    date: "2021-04-22 18:52:17"
+    output:
+      github_document
+    ---
+
+Then, wherever you want to include the value for the variable named
+`hashtag`, simply use `params$<parameter name>`, as in the title shown
+here or in later code chunks or inline R code. e.g.
+
+The data number reach `` `r params$max_n` ``
+
 ## Pandoc arguments
 
-## shared options
+Some options are passed to Pandoc, such as toc, toc\_depth, and
+number\_sections. You should consult the Pandoc documentation when in
+doubt. R Markdown output format functions often have a pandoc\_args
+argument, which should be a character vector of extra arguments to be
+passed to Pandoc. If you find any Pandoc features that are not
+represented by the output format arguments, you may use this ultimate
+argument. If the argument is document metadata, you can set it with
+first-level YAML metadata. e.g.,
+
+    ---
+    output:  
+      word_document:
+        toc: true
+    toc-title: "test for document metadata"
+    ---
+
+![toc-title](images/metadata.png) You can also visit [Pandoc
+document](https://pandoc.org/MANUAL.html#variables) to see more
+arguments
+
+Or passed it in with the -M command-line flag.
+
+    ---
+    output:  
+      word_document:
+        toc: true
+        pandoc_args: [
+          "-M", "toc-title=Table des matières"
+        ]
+    ---
+
+# shared options
 
 If you want to specify a set of default options to be shared by multiple
-documents within a directory, you can include a file named \_output.yml
+documents within a directory, you can include a file named `_output.yml`
 within the directory. Note that no YAML delimiters (—) or the enclosing
 output field are used in this file. For example:
 
@@ -556,9 +640,19 @@ output field are used in this file. For example:
       theme: united
       highlight: textmate
 
+# Future work
+
+We will contine to summarize the YAML options of related packages
+(e.g. distill, rticles, bookdown, rmdformats )
+
+# Refereces
+
 Barrett, Malcolm, and Richard Iannone. 2021. *Ymlthis: Write ’YAML’ for
 ’r Markdown’, ’Bookdown’, ’Blogdown’, and More*.
 <https://CRAN.R-project.org/package=ymlthis>.
 
 Xie, Yihui. 2018. *R Markdown: The Definitive Guide*.
 <https://doi.org/10.1201/9781138359444>.
+
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. *R Markdown
+Cookbook*. <https://doi.org/10.1201/9781003097471>.
