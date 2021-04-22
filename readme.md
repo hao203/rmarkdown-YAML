@@ -64,7 +64,7 @@ the power to easily control R Markdown by YAML.
 
 ### Data Structure
 
-Source: ymlthis package(Barrett and Iannone 2021) vignette
+> Source: ymlthis package(Barrett and Iannone 2021) vignette
 
 A YAML code block should be fenced in with `---` before and after (you
 can also use … to end the YAML block, but this is not very common in R
@@ -321,7 +321,7 @@ can help find the appropriate tag.
 The `output` field of YAML is very important for R Markdown. The
 `rmarkdown` package contains a lot of output formats for different use.
 
-Source: <https://rmarkdown.rstudio.com/lesson-9.html>
+> Source: <https://rmarkdown.rstudio.com/lesson-9.html>
 
     ---
     output: html_notebook
@@ -503,8 +503,8 @@ example:
 
 # Bibliographies and Citations
 
-Source:
-<https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>
+> Source:
+> <https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>
 
 Pandoc can automatically generate citations and a bibliography in a
 number of styles. In order to use this feature, you will need to specify
@@ -571,8 +571,8 @@ use `header-includes` for Chinese document.
 
 ## params
 
-Source:
-<https://www.r-bloggers.com/2019/03/using-parameters-in-rmarkdown/>
+> Source:
+> <https://www.r-bloggers.com/2019/03/using-parameters-in-rmarkdown/>
 
 You can include a `params` section in the YAML header at the top and
 include variables as key-value pairs:
@@ -584,7 +584,7 @@ include variables as key-value pairs:
       timezone: "US/Eastern"
     title: "Twitter Coverage of "
     author: "Neil Saunders"
-    date: "2021-04-22 18:59:30"
+    date: "2021-04-22 19:08:39"
     output:
       github_document
     ---
