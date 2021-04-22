@@ -4,15 +4,15 @@ author: "Hao Liang"
 date: "`r Sys.Date()`"
 affiliation: HNUCM
 output:
+  md_document:
+    toc: yes
+    toc_depth: 2
+  rmdformats::downcute:
+    highlight: tango
   pdf_document:
     toc: yes
     latex_engine: xelatex
     highlight: tango
-  rmdformats::downcute:
-    highlight: tango
-  md_document:
-    toc: yes
-    toc_depth: 2
   html_document:
     toc: yes
     toc_depth: '2'
@@ -526,7 +526,7 @@ output:
 ---
 ```
 
-Then, wherever you want to include the value for the variable named `hashtag`, simply use `params$<parameter name>`, as in the title shown here or in later code chunks or inline R code. e.g.
+Then, wherever you want to include the value for the variable named `hashtag`, simply use `params$hashtag`, as in the title shown here or in later code chunks or inline R code. e.g.
 
 The data number reach  `` `r knitr::inline_expr('params$max_n')` ``
 

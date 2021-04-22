@@ -584,14 +584,14 @@ include variables as key-value pairs:
       timezone: "US/Eastern"
     title: "Twitter Coverage of "
     author: "Neil Saunders"
-    date: "2021-04-22 18:56:03"
+    date: "2021-04-22 18:57:27"
     output:
       github_document
     ---
 
 Then, wherever you want to include the value for the variable named
-`hashtag`, simply use `params$<parameter name>`, as in the title shown
-here or in later code chunks or inline R code. e.g.
+`hashtag`, simply use `params$hashtag`, as in the title shown here or in
+later code chunks or inline R code. e.g.
 
 The data number reach `` `r params$max_n` ``
 
