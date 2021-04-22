@@ -4,15 +4,15 @@ author: "Hao Liang"
 date: "`r Sys.Date()`"
 affiliation: HNUCM
 output:
-  md_document:
-    toc: yes
-    toc_depth: 2
-  rmdformats::downcute:
-    highlight: tango
   pdf_document:
     toc: yes
     latex_engine: xelatex
     highlight: tango
+  rmdformats::downcute:
+    highlight: tango
+  md_document:
+    toc: yes
+    toc_depth: 2
   html_document:
     toc: yes
     toc_depth: '2'
@@ -541,8 +541,7 @@ output:
 toc-title: "test for document metadata"
 ---
 ```
-![toc-title](images/metadata.png)
-You can also visit [Pandoc document](https://pandoc.org/MANUAL.html#variables) to see more arguments
+![toc-title example](images/metadata.png)
 
 
 Or passed it in with the -M command-line flag.
@@ -559,6 +558,8 @@ output:
 ---
 ```
 
+You can also visit [Pandoc document](https://pandoc.org/MANUAL.html#variables) to see more arguments
+
 # shared options
 
 If you want to specify a set of default options to be shared by multiple documents within a directory, you can include a file named `_output.yml` within the directory. Note that no YAML delimiters (---) or the enclosing output field are used in this file. For example:
@@ -571,6 +572,6 @@ html_document:
 ```
 # Future work
 
-We will contine to summarize the YAML options of related packages (e.g. distill, rticles, bookdown, rmdformats )
+We will continue to summarize the YAML options of related packages (e.g. distill, rticles, bookdown, rmdformats )
 
 # Refereces

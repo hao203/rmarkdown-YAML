@@ -182,7 +182,7 @@ R code can be written as inline expressions `` `r expr` ``. R code in
 `params` needs to be slightly different: use `!r`(e.g. `!r expr`) to
 call an R object.
 
-    author: 'liang'
+    author: '鈥榣ianghao'
     params:
       date: !r Sys.Date()
 
@@ -584,7 +584,7 @@ include variables as key-value pairs:
       timezone: "US/Eastern"
     title: "Twitter Coverage of "
     author: "Neil Saunders"
-    date: "2021-04-22 19:08:39"
+    date: "2021-04-22 21:37:09"
     output:
       github_document
     ---
@@ -613,9 +613,7 @@ first-level YAML metadata. e.g.,
     toc-title: "test for document metadata"
     ---
 
-![toc-title](images/metadata.png) You can also visit [Pandoc
-document](https://pandoc.org/MANUAL.html#variables) to see more
-arguments
+![toc-title example](images/metadata.png)
 
 Or passed it in with the -M command-line flag.
 
@@ -627,6 +625,10 @@ Or passed it in with the -M command-line flag.
           "-M", "toc-title=test for document metadata"
         ]
     ---
+
+You can also visit [Pandoc
+document](https://pandoc.org/MANUAL.html#variables) to see more
+arguments
 
 # shared options
 
@@ -642,7 +644,7 @@ output field are used in this file. For example:
 
 # Future work
 
-We will contine to summarize the YAML options of related packages
+We will continue to summarize the YAML options of related packages
 (e.g. distill, rticles, bookdown, rmdformats )
 
 # Refereces
