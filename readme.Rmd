@@ -20,7 +20,6 @@ output:
 bibliography: Ref.bib
 params:
   max_n: 18000
-toc-title: "test for document metadata"
 ---
 
 

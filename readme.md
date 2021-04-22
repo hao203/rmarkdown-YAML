@@ -584,7 +584,7 @@ include variables as key-value pairs:
       timezone: "US/Eastern"
     title: "Twitter Coverage of "
     author: "Neil Saunders"
-    date: "2021-04-22 18:57:27"
+    date: "2021-04-22 18:59:30"
     output:
       github_document
     ---
