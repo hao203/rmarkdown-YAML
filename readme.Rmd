@@ -4,11 +4,11 @@ author: "Hao Liang"
 date: "`r Sys.Date()`"
 affiliation: HNUCM
 output:
+  rmdformats::downcute:
+    highlight: tango
   pdf_document:
     toc: yes
     latex_engine: xelatex
-    highlight: tango
-  rmdformats::downcute:
     highlight: tango
   md_document:
     toc: yes
@@ -50,7 +50,7 @@ Rmd makes it possible to use a YAML header to specify certain parameters right a
 -   https://rmarkdown.rstudio.com/formats.html --- R Markdown formats from RStudio 
 -   https://www.r-bloggers.com/2020/08/useful-yaml-options-for-generating-html-reports-in-r/ --- Useful YAML options for generating HTML reports in R
 
-# useful tools
+# Useful tools
 
 -   https://ymlthis.r-lib.org/index.html --- ymlthis: a package for writing YAML for R Markdown
 
@@ -59,18 +59,18 @@ Rmd makes it possible to use a YAML header to specify certain parameters right a
 # Terminology and norms
 
 -   R lang -- use upper case letter `R`
--   Rmd -- capitalizes the first letter for `Rmd` files
+-   Rmd -- capitalize the first letter for `Rmd`
 -   R Markdown -- the R Markdown module or notebook of Rstudio 
 -   rmarkdown -- the package of `rmarkdown`
 -   YAML -- /ˈjæməl/ a recursive acronym for "YAML Ain't Markup Language"
 -   YAML header/metadata -- the settings data written by YAML in Rmd header
--   All the YAML metadata are `lower case letters` except file paths or file names
+-   All the YAML metadata are `lower case letters` except arguments, file paths or file names
 
 # Basic
 
 ## Syntax
 
-### Data Structure
+### Data structure
 
 > Source: ymlthis package[@Barrett2021] vignette
 
@@ -176,7 +176,7 @@ category:
 - Reprodicible Research
 ```
 
-### quote and R code
+### Quote and R code
 
 You may have noticed that strings in YAML don’t always need to be quoted. However, it can be useful to explicitly wrap strings in quotes when they contain special characters like : and @.
 
@@ -186,8 +186,9 @@ title: 'R Markdown: An Introduction'
 
 R code can be written as inline expressions `` `r knitr::inline_expr('expr')` ``.  R code in `params` needs to be slightly different: use `!r `(e.g. `!r expr`) to call an R object.
 
+
 ```yaml
-author: '`r whoami::fullname()`'
+author: "`r knitr::inline_expr('whoami::fullname()')` "
 params:
   date: !r Sys.Date()
 ```
@@ -250,7 +251,7 @@ output: distill::distill_article
 ---
 ```
 
-### output
+### Output
 
 The `output` field of YAML is very important for R Markdown. The `rmarkdown` package contains a lot of output formats for different use.
 
@@ -314,7 +315,7 @@ output:
 
 
 
-# advanced options for html and pdf
+# Advanced options for html and pdf
 
 R Markdown stands on the shoulders of `knitr` and Pandoc[@Xie2020]. html and pdf are the most common formats outputted by R Markdown, most other formats are also transformed from them. From the figure below, we clearly see the difference for generating html and pdf. `.md` files can be directly converted to html, but md -> pdf is time-consuming and depends on tex(R Markdown documents are converted to PDF by first converting to a TeX file and then calling the LaTeX engine to convert to PDF. ). So the options for these two formats are not always compatible.
 
@@ -436,7 +437,7 @@ header-includes: |
 ---
 ```
 
-# Bibliographies and Citations
+# Bibliographies and citations
 
 > Source: https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
 
@@ -560,7 +561,7 @@ output:
 
 You can also visit [Pandoc document](https://pandoc.org/MANUAL.html#variables) to see more arguments
 
-# shared options
+# Shared options
 
 If you want to specify a set of default options to be shared by multiple documents within a directory, you can include a file named `_output.yml` within the directory. Note that no YAML delimiters (---) or the enclosing output field are used in this file. For example:
 

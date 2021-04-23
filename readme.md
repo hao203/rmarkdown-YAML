@@ -1,21 +1,21 @@
 -   [YAML metadata (header) in R
     Markdown](#yaml-metadata-header-in-r-markdown)
 -   [Useful websites](#useful-websites)
--   [useful tools](#useful-tools)
+-   [Useful tools](#useful-tools)
 -   [Terminology and norms](#terminology-and-norms)
 -   [Basic](#basic)
     -   [Syntax](#syntax)
     -   [Basic setting metadata](#basic-setting-metadata)
--   [advanced options for html and
+-   [Advanced options for html and
     pdf](#advanced-options-for-html-and-pdf)
     -   [html](#html)
     -   [pdf](#pdf)
--   [Bibliographies and Citations](#bibliographies-and-citations)
+-   [Bibliographies and citations](#bibliographies-and-citations)
 -   [Chinese/Japanese support](#chinesejapanese-support)
 -   [parameters and arguments](#parameters-and-arguments)
     -   [params](#params)
     -   [Pandoc arguments](#pandoc-arguments)
--   [shared options](#shared-options)
+-   [Shared options](#shared-options)
 -   [Future work](#future-work)
 -   [Refereces](#refereces)
 
@@ -38,7 +38,7 @@ the power to easily control R Markdown by YAML.
 -   <https://www.r-bloggers.com/2020/08/useful-yaml-options-for-generating-html-reports-in-r/>
     — Useful YAML options for generating HTML reports in R
 
-# useful tools
+# Useful tools
 
 -   <https://ymlthis.r-lib.org/index.html> — ymlthis: a package for
     writing YAML for R Markdown
@@ -49,20 +49,20 @@ the power to easily control R Markdown by YAML.
 # Terminology and norms
 
 -   R lang – use upper case letter `R`
--   Rmd – capitalizes the first letter for `Rmd` files
+-   Rmd – capitalize the first letter for `Rmd`
 -   R Markdown – the R Markdown module or notebook of Rstudio
 -   rmarkdown – the package of `rmarkdown`
 -   YAML – /ˈjæməl/ a recursive acronym for “YAML Ain’t Markup Language”
 -   YAML header/metadata – the settings data written by YAML in Rmd
     header
--   All the YAML metadata are `lower case letters` except file paths or
-    file names
+-   All the YAML metadata are `lower case letters` except arguments,
+    file paths or file names
 
 # Basic
 
 ## Syntax
 
-### Data Structure
+### Data structure
 
 > Source: ymlthis package(Barrett and Iannone 2021) vignette
 
@@ -170,7 +170,7 @@ can be indented or not below category here).
     - R
     - Reprodicible Research
 
-### quote and R code
+### Quote and R code
 
 You may have noticed that strings in YAML don’t always need to be
 quoted. However, it can be useful to explicitly wrap strings in quotes
@@ -182,7 +182,7 @@ R code can be written as inline expressions `` `r expr` ``. R code in
 `params` needs to be slightly different: use `!r`(e.g. `!r expr`) to
 call an R object.
 
-    author: '鈥榣ianghao'
+    author: "`r whoami::fullname()` "
     params:
       date: !r Sys.Date()
 
@@ -199,7 +199,7 @@ Set Top-level Basic R Markdown YAML Fields. e.g.
     title: "YAML metadata for R Markdown with examples"
     subtitle: "YAML header"
     author: Hao Liang
-    date: "2021-04-22"
+    date: "2021-04-23"
     output:
       md_document:
         toc: yes
@@ -316,7 +316,7 @@ can help find the appropriate tag.
     output: distill::distill_article
     ---
 
-### output
+### Output
 
 The `output` field of YAML is very important for R Markdown. The
 `rmarkdown` package contains a lot of output formats for different use.
@@ -376,7 +376,7 @@ example:
           smooth_scroll: false
     ---
 
-# advanced options for html and pdf
+# Advanced options for html and pdf
 
 R Markdown stands on the shoulders of `knitr` and Pandoc(Xie, Dervieux,
 and Riederer 2020). html and pdf are the most common formats outputted
@@ -501,7 +501,7 @@ example:
       </style>
     ---
 
-# Bibliographies and Citations
+# Bibliographies and citations
 
 > Source:
 > <https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html>
@@ -584,7 +584,7 @@ include variables as key-value pairs:
       timezone: "US/Eastern"
     title: "Twitter Coverage of "
     author: "Neil Saunders"
-    date: "2021-04-22 21:37:09"
+    date: "2021-04-23 12:30:21"
     output:
       github_document
     ---
@@ -630,7 +630,7 @@ You can also visit [Pandoc
 document](https://pandoc.org/MANUAL.html#variables) to see more
 arguments
 
-# shared options
+# Shared options
 
 If you want to specify a set of default options to be shared by multiple
 documents within a directory, you can include a file named `_output.yml`
