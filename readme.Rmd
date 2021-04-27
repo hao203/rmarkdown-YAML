@@ -4,15 +4,15 @@ author: "Hao Liang"
 date: "`r Sys.Date()`"
 affiliation: HNUCM
 output:
-  rmdformats::downcute:
-    highlight: tango
+  github_document:
+    toc: yes
+    toc_depth: 2
   pdf_document:
     toc: yes
     latex_engine: xelatex
     highlight: tango
-  md_document:
-    toc: yes
-    toc_depth: 2
+  rmdformats::downcute:
+    highlight: tango
   html_document:
     toc: yes
     toc_depth: '2'
@@ -273,6 +273,7 @@ The `rmarkdown` package/ Rmd natively support the following formats:
   - odt_document
   - rtf_document
   - md_document
+  - github_document
   - ioslides_presentation
   - beamer_presentation
   - powerpoint_presentation
@@ -574,5 +575,9 @@ html_document:
 # Future work
 
 We will continue to summarize the YAML options of related packages (e.g. distill, rticles, bookdown, rmdformats )
+
+  - [distill](distill//readme.md)
+  
+Updating...
 
 # Refereces

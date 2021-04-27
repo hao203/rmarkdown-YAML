@@ -1,3 +1,8 @@
+YAML metadata for R Markdown with examples
+================
+Hao Liang
+2021-04-27
+
 -   [YAML metadata (header) in R
     Markdown](#yaml-metadata-header-in-r-markdown)
 -   [Useful websites](#useful-websites)
@@ -74,57 +79,69 @@ Markdown).
     dictionary is represented in a simples `key: value` form (the colon
     must be followed by a `space`)
 
-        ---
-        title: "YAML metadata for R Markdown with examples"
-        author: Hao Liang
-        fontsize: 12pt
-        ---
+    ``` yaml
+    ---
+    title: "YAML metadata for R Markdown with examples"
+    author: Hao Liang
+    fontsize: 12pt
+    ---
+    ```
 
 2.  All members of a list are lines beginning at the same indentation
     level starting with a `'- '` (a dash and a space):
 
-        # A list of tasty fruits
-        - Apple
-        - Orange
-        - Strawberry
-        - Mango
+    ``` yaml
+    # A list of tasty fruits
+    - Apple
+    - Orange
+    - Strawberry
+    - Mango
 
-        # OR
-        [Apple, Orange, Strawberry, Mango]
+    # OR
+    [Apple, Orange, Strawberry, Mango]
+    ```
 
 3.  More complicated data structures are possible, such as lists of
     dictionaries, dictionaries whose values are lists or a mix of both:
 
-        author: 
-         - Name_1   # can be indented or not
-         - Name_2   # but be consistent among different entries
+    ``` yaml
+    author: 
+     - Name_1   # can be indented or not
+     - Name_2   # but be consistent among different entries
+    ```
 
 4.  Dictionaries and lists can also be represented in an abbreviated
     form if you really want to:
 
-        author: [Name_1, Name_2]
+    ``` yaml
+    author: [Name_1, Name_2]
+    ```
 
 5.  Strings can be denoted with a `|` character, which preserves
     newlines, or a `>` character, which folds newlines.
 
-        abstract: |
-          One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
+    ``` yaml
+    abstract: |
+      One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
 
-          Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
+      Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
 
 
-        abstract: >
-          One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
+    abstract: >
+      One or two sentences providing a **basic introduction** to the field,  comprehensible     to a scientist in any discipline.
 
-          Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
+      Two to three sentences of **more detailed background**, comprehensible  to scientists     in related disciplines.
+    ```
 
 6.  Logical values in YAML are unusual: `true/false`, `yes/no`, and
     `on/off` are all equivalent to TRUE/FALSE in R. Any of these turn on
     the table of contents:
 
-        toc: true
-        toc: yes
-        toc: on
+    ``` yaml
+    toc: true
+    toc: yes
+    toc: on
+    ```
 
 ### Indent
 
@@ -134,11 +151,13 @@ recommended.). When we want to specify the output function
 We also need to nest `toc` under pdf\_document so that it gets passed to
 that function correctly.
 
-    ---
-    output:
-      pdf_document:
-        toc: true
-    ---
+``` yaml
+---
+output:
+  pdf_document:
+    toc: true
+---
+```
 
 In R, the equivalent structure is a nested list, each with a name:
 `list(output = list(pdf_document = list(toc = TRUE)))`. Similarly, you
@@ -146,29 +165,35 @@ can call this in R Markdown using the metadata object,
 e.g. `metadata$output$pdf_document$toc`. The hierarchical structure
 (which you can see with `draw_yml_tree()`) looks like this:
 
-    └── output:
-        └── pdf_document:
-            └── toc: true
+``` yaml
+└── output:
+    └── pdf_document:
+        └── toc: true
+```
 
 Without the extra indents, YAML doesn’t know toc is connected to
 `pdf_document` and thinks the value of `pdf_document` is NULL. YAML that
 looks like this:
 
-    output:
-      pdf_document:
-    toc: true
+``` yaml
+output:
+  pdf_document:
+toc: true
 
-    ├── output:
-    │   └── pdf_document: null
-    └── toc: true
+├── output:
+│   └── pdf_document: null
+└── toc: true
+```
 
 Some YAML fields take unnamed vectors as their value. You can specify an
 element of the vector by adding a new line and - (note that the values
 can be indented or not below category here).
 
-    category:
-    - R
-    - Reprodicible Research
+``` yaml
+category:
+- R
+- Reprodicible Research
+```
 
 ### Quote and R code
 
@@ -176,15 +201,19 @@ You may have noticed that strings in YAML don’t always need to be
 quoted. However, it can be useful to explicitly wrap strings in quotes
 when they contain special characters like : and @.
 
-    title: 'R Markdown: An Introduction'
+``` yaml
+title: 'R Markdown: An Introduction'
+```
 
 R code can be written as inline expressions `` `r expr` ``. R code in
 `params` needs to be slightly different: use `!r`(e.g. `!r expr`) to
 call an R object.
 
-    author: "`r whoami::fullname()` "
-    params:
-      date: !r Sys.Date()
+``` yaml
+author: "`r whoami::fullname()` "
+params:
+  date: !r Sys.Date()
+```
 
 ## Basic setting metadata
 
@@ -195,106 +224,39 @@ other associated packages.
 
 Set Top-level Basic R Markdown YAML Fields. e.g.
 
-    ---
-    title: "YAML metadata for R Markdown with examples"
-    subtitle: "YAML header"
-    author: Hao Liang
-    date: "2021-04-23"
-    output:
-      md_document:
-        toc: yes
-        toc_depth: 2
-    abstract: YAML is a human-readable and easy to write language to define data structures.
-    keywords: ["YAML", "Rmd"]
-    subject: Medicine
-    description: Rmd makes it possible to use a YAML header to specify certain parameters right at the beginning of the document.
-    category: 
-     - Rmd
-     - Medicine
-    lang: "en-US" 
-    ---
+``` yaml
+---
+title: "YAML metadata for R Markdown with examples"
+subtitle: "YAML header"
+author: Hao Liang
+date: "2021-04-27"
+output:
+  md_document:
+    toc: yes
+    toc_depth: 2
+abstract: YAML is a human-readable and easy to write language to define data structures.
+keywords: ["YAML", "Rmd"]
+subject: Medicine
+description: Rmd makes it possible to use a YAML header to specify certain parameters right at the beginning of the document.
+category: 
+ - Rmd
+ - Medicine
+lang: "en-US" 
+---
+```
 
 These field is not available in all output formats. Each is available
 in:
 
-<table>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 15%" />
-<col style="width: 14%" />
-<col style="width: 15%" />
-<col style="width: 14%" />
-<col style="width: 26%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>field</th>
-<th>html_document</th>
-<th>pdf_document</th>
-<th>word_document</th>
-<th>odt_document</th>
-<th>powerpoint_presentation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>subtitle</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>abstract</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>keywords</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-</tr>
-<tr class="even">
-<td>subject</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-</tr>
-<tr class="odd">
-<td>description</td>
-<td></td>
-<td></td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-</tr>
-<tr class="even">
-<td>category</td>
-<td></td>
-<td></td>
-<td>:smiley:</td>
-<td></td>
-<td>:smiley:</td>
-</tr>
-<tr class="odd">
-<td>lang</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-<td>:smiley:</td>
-</tr>
-</tbody>
-</table>
+| field       | html\_document | pdf\_document | word\_document | odt\_document | powerpoint\_presentation |
+|-------------|----------------|---------------|----------------|---------------|--------------------------|
+| subtitle    | :smiley:       | :smiley:      | :smiley:       |               |                          |
+| abstract    | :smiley:       | :smiley:      |                |               |                          |
+| keywords    | :smiley:       | :smiley:      | :smiley:       | :smiley:      | :smiley:                 |
+| subject     | :smiley:       | :smiley:      | :smiley:       | :smiley:      | :smiley:                 |
+| description |                |               | :smiley:       | :smiley:      | :smiley:                 |
+| category    |                |               | :smiley:       |               | :smiley:                 |
+| lang        | :smiley:       | :smiley:      | :smiley:       | :smiley:      | :smiley:                 |
 
 The document language using IETF language tags such as “en” or “en-US.”
 The [language subtag lookup tool](https://r12a.github.io/app-subtags/)
@@ -306,15 +268,17 @@ can help find the appropriate tag.
 > After you install the distill package. You can see the corresponding
 > section in this tutorial (still updating).
 
-    ---
-    title: "Distill for R Markdown"
-    author:
-      - name: "JJ Allaire"
-        url: https://github.com/jjallaire
-        affiliation: RStudio
-        affiliation_url: https://www.rstudio.com
-    output: distill::distill_article
-    ---
+``` yaml
+---
+title: "Distill for R Markdown"
+author:
+  - name: "JJ Allaire"
+    url: https://github.com/jjallaire
+    affiliation: RStudio
+    affiliation_url: https://www.rstudio.com
+output: distill::distill_article
+---
+```
 
 ### Output
 
@@ -323,9 +287,11 @@ The `output` field of YAML is very important for R Markdown. The
 
 > Source: <https://rmarkdown.rstudio.com/lesson-9.html>
 
-    ---
-    output: html_notebook
-    ---
+``` yaml
+---
+output: html_notebook
+---
+```
 
 The `rmarkdown` package/ Rmd natively support the following formats:
 
@@ -336,6 +302,7 @@ The `rmarkdown` package/ Rmd natively support the following formats:
 -   odt\_document
 -   rtf\_document
 -   md\_document
+-   github\_document
 -   ioslides\_presentation
 -   beamer\_presentation
 -   powerpoint\_presentation
@@ -344,19 +311,23 @@ The `rmarkdown` package/ Rmd natively support the following formats:
 If you use one output format without additional arguments, the value of
 output can simply be the name of the function.
 
-    ---
-    output: html_document
-    ---
+``` yaml
+---
+output: html_document
+---
+```
 
 However, if you’re specifying more than one output type, you must use
 the nesting syntax. If you don’t want to include additional arguments,
 use “default” as the function’s value.
 
-    ---
-    output:
-      html_document: default
-      pdf_document: default
-    ---
+``` yaml
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+```
 
 ### toc
 
@@ -365,16 +336,18 @@ of contents (TOC) using the `toc` option and specify the depth of
 headers that it applies to using the `toc_depth` option(Xie 2018). For
 example:
 
-    ---
-    title: "Habits"
-    output:
-      html_document:
-        toc: true
-        toc_depth: 2
-        toc_float: # invalid for other output formats of non-html
-          collapsed: false
-          smooth_scroll: false
-    ---
+``` yaml
+---
+title: "Habits"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: # invalid for other output formats of non-html
+      collapsed: false
+      smooth_scroll: false
+---
+```
 
 # Advanced options for html and pdf
 
@@ -394,51 +367,55 @@ always compatible.
 
 html full YAML example:
 
-    ---
-    output:
-      html_document:
-        code_folding: hide #choose to hide/show code blocks initially.
-        number_sections: true # add section numbering to headers
-        theme: united # Bootstrap theme (themes are drawn from the Bootswatch theme library)
-        highlight: tango #specifies the syntax highlighting style
-        css: styles.css # custom CSS ( set the theme and potentially highlight to null)
-        fig_width: 7 # Figure options
-        fig_height: 6
-        fig_caption: true
-        df_print: paged # tables are printed as HTML tables with support for pagination
-        self_contained: false # keep dependencies in external files
-        keep_md: true # keep a copy of the Markdown file
-        includes:
-          in_header: header.html # inject CSS and JavaScript code into the <head> tag
-          before_body: doc_prefix.html # include a header that shows a banner or logo.
-          after_body: doc_suffix.html # include a footer
-        template: template.html # custom templates
-        md_extensions: -autolink_bare_uris+hard_line_breaks # preface an option with '-' to disable and '+' to enable itpreface an option with - to disable and + to enable it
-    ---
+``` yaml
+---
+output:
+  html_document:
+    code_folding: hide #choose to hide/show code blocks initially.
+    number_sections: true # add section numbering to headers
+    theme: united # Bootstrap theme (themes are drawn from the Bootswatch theme library)
+    highlight: tango #specifies the syntax highlighting style
+    css: styles.css # custom CSS ( set the theme and potentially highlight to null)
+    fig_width: 7 # Figure options
+    fig_height: 6
+    fig_caption: true
+    df_print: paged # tables are printed as HTML tables with support for pagination
+    self_contained: false # keep dependencies in external files
+    keep_md: true # keep a copy of the Markdown file
+    includes:
+      in_header: header.html # inject CSS and JavaScript code into the <head> tag
+      before_body: doc_prefix.html # include a header that shows a banner or logo.
+      after_body: doc_suffix.html # include a footer
+    template: template.html # custom templates
+    md_extensions: -autolink_bare_uris+hard_line_breaks # preface an option with '-' to disable and '+' to enable itpreface an option with - to disable and + to enable it
+---
+```
 
 ## pdf
 
 ### pdf full YAML example for output:
 
-    ---
-    output:
-      pdf_document:
-        toc: true
-        number_sections: true
-        fig_width: 7
-        fig_height: 6
-        fig_caption: true
-        df_print: kable # print.data.frame(default)/kable/tibble
-        highlight: tango
-        latex_engine: xelatex # try to use xelatex as default
-        keep_tex: true
-        keep_tex: true
-        template: template.tex
-        includes:
-          in_header: preamble.tex
-          before_body: doc-prefix.tex
-          after_body: doc-suffix.tex
-    ---
+``` yaml
+---
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    df_print: kable # print.data.frame(default)/kable/tibble
+    highlight: tango
+    latex_engine: xelatex # try to use xelatex as default
+    keep_tex: true
+    keep_tex: true
+    template: template.tex
+    includes:
+      in_header: preamble.tex
+      before_body: doc-prefix.tex
+      after_body: doc-suffix.tex
+---
+```
 
 ### pdf top-level YAML example
 
@@ -447,18 +424,20 @@ customized using top-level YAML metadata (note that these options do not
 appear underneath the output section, but rather appear at the top level
 along with title, author, and so on)(Xie 2018). For example:
 
-    ---
-    output: pdf_document
-    fontsize: 11pt
-    geometry: margin=1in
-    documentclass: ctexart # usually one of the standard classes, article, book, and report
-    classoption:
-     - twocolumn
-     - landscape
-    linestretch: 2 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
-    indent: true  # indent paragraphs
-    papersize: a4 # paper size, e.g. letter, a4
-    ---
+``` yaml
+---
+output: pdf_document
+fontsize: 11pt
+geometry: margin=1in
+documentclass: ctexart # usually one of the standard classes, article, book, and report
+classoption:
+ - twocolumn
+ - landscape
+linestretch: 2 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
+indent: true  # indent paragraphs
+papersize: a4 # paper size, e.g. letter, a4
+---
+```
 
 Consult the Pandoc manual for the [full
 list](https://pandoc.org/MANUAL.html#variables-for-latex) to know more.
@@ -467,39 +446,43 @@ list](https://pandoc.org/MANUAL.html#variables-for-latex) to know more.
 
 Tex style and package loading can also put in `header-includes`.
 
-    ---
-    output: pdf_document
-    header-includes:
-     - \usepackage{fancyhdr}
-     - \pagestyle{fancy}
-     - \usepackage{ctex} #TeX package for  Chinese
-     - \fancyhead[L]{MANUSCRIPT AUTHORS}
-     - \fancyhead[R]{MANUSCRIPT SHORT TITLE}
-     - \usepackage{lineno} # TeX package for line numbers
-     - \linenumbers
-    ---
+``` yaml
+---
+output: pdf_document
+header-includes:
+ - \usepackage{fancyhdr}
+ - \pagestyle{fancy}
+ - \usepackage{ctex} #TeX package for  Chinese
+ - \fancyhead[L]{MANUSCRIPT AUTHORS}
+ - \fancyhead[R]{MANUSCRIPT SHORT TITLE}
+ - \usepackage{lineno} # TeX package for line numbers
+ - \linenumbers
+---
+```
 
 To override or extend some CSS for just one document, include for
 example:
 
-    ---
-    output: html_document
-    header-includes: |
-      <style>
-      blockquote {
-        font-style: italic;
-      }
-      tr.even {
-        background-color: #f0f0f0;
-      }
-      td, th {
-        padding: 0.5em 2em 0.5em 0.5em;
-      }
-      tbody {
-        border-bottom: none;
-      }
-      </style>
-    ---
+``` yaml
+---
+output: html_document
+header-includes: |
+  <style>
+  blockquote {
+    font-style: italic;
+  }
+  tr.even {
+    background-color: #f0f0f0;
+  }
+  td, th {
+    padding: 0.5em 2em 0.5em 0.5em;
+  }
+  tbody {
+    border-bottom: none;
+  }
+  </style>
+---
+```
 
 # Bibliographies and citations
 
@@ -518,23 +501,27 @@ found at <https://github.com/citation-style-language/styles> or
 
 For example:
 
-    ---
-    title: "Sample Document"
-    output: html_document
-    bibliography: bibliography.json
-    csl: biomed-central.csl
-    ---
+``` yaml
+---
+title: "Sample Document"
+output: html_document
+bibliography: bibliography.json
+csl: biomed-central.csl
+---
+```
 
 By default, citations are generated by the utility pandoc-citeproc, and
 it works for all output formats. When the output is LaTeX/PDF, you can
 also use LaTeX packages (e.g. `natbib` or `biblatex`) to generate
 citations
 
-    ---
-    output:
-      pdf_document:
-        citation_package: natbib
-    ---
+``` yaml
+---
+output:
+  pdf_document:
+    citation_package: natbib
+---
+```
 
 # Chinese/Japanese support
 
@@ -545,27 +532,33 @@ There are two ways.
 
 1.`includes` and `header.tex`
 
-    ---
-    output:
-      pdf_document:
-        includes:
-          in_header: header.tex
-    ---
+``` yaml
+---
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+---
+```
 
 header.tex
 
-    \usepackage{xeCJK}  
-    \setCJKmainfont{Noto Sans CJK SC}
+``` latex
+\usepackage{xeCJK}  
+\setCJKmainfont{Noto Sans CJK SC}
+```
 
 2.header-includes
 
 use `header-includes` for Chinese document.
 
-    ---
-    output: pdf_document
-    header-includes:
-      - \usepackage{ctex}
-    ---
+``` yaml
+---
+output: pdf_document
+header-includes:
+  - \usepackage{ctex}
+---
+```
 
 # parameters and arguments
 
@@ -577,17 +570,19 @@ use `header-includes` for Chinese document.
 You can include a `params` section in the YAML header at the top and
 include variables as key-value pairs:
 
-    ---
-    params:
-      hashtag: "#amca19"
-      max_n: 18000
-      timezone: "US/Eastern"
-    title: "Twitter Coverage of "
-    author: "Neil Saunders"
-    date: "2021-04-23 12:30:21"
-    output:
-      github_document
-    ---
+``` yaml
+---
+params:
+  hashtag: "#amca19"
+  max_n: 18000
+  timezone: "US/Eastern"
+title: "Twitter Coverage of "
+author: "Neil Saunders"
+date: "2021-04-27 10:23:41"
+output:
+  github_document
+---
+```
 
 Then, wherever you want to include the value for the variable named
 `hashtag`, simply use `params$hashtag`, as in the title shown here or in
@@ -606,25 +601,29 @@ represented by the output format arguments, you may use this ultimate
 argument. If the argument is document metadata, you can set it with
 first-level YAML metadata. e.g.,
 
-    ---
-    output:  
-      word_document:
-        toc: true
-    toc-title: "test for document metadata"
-    ---
+``` yaml
+---
+output:  
+  word_document:
+    toc: true
+toc-title: "test for document metadata"
+---
+```
 
 ![toc-title example](images/metadata.png)
 
 Or passed it in with the -M command-line flag.
 
-    ---
-    output:  
-      word_document:
-        toc: true
-        pandoc_args: [
-          "-M", "toc-title=test for document metadata"
-        ]
-    ---
+``` yaml
+---
+output:  
+  word_document:
+    toc: true
+    pandoc_args: [
+      "-M", "toc-title=test for document metadata"
+    ]
+---
+```
 
 You can also visit [Pandoc
 document](https://pandoc.org/MANUAL.html#variables) to see more
@@ -637,24 +636,46 @@ documents within a directory, you can include a file named `_output.yml`
 within the directory. Note that no YAML delimiters (—) or the enclosing
 output field are used in this file. For example:
 
-    html_document:
-      self_contained: false
-      theme: united
-      highlight: textmate
+``` yaml
+html_document:
+  self_contained: false
+  theme: united
+  highlight: textmate
+```
 
 # Future work
 
 We will continue to summarize the YAML options of related packages
 (e.g. distill, rticles, bookdown, rmdformats )
 
+-   [distill](distill//readme.md)
+
+Updating…
+
 # Refereces
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-Barrett2021" class="csl-entry">
 
 Barrett, Malcolm, and Richard Iannone. 2021. *Ymlthis: Write ’YAML’ for
 ’r Markdown’, ’Bookdown’, ’Blogdown’, and More*.
 <https://CRAN.R-project.org/package=ymlthis>.
 
+</div>
+
+<div id="ref-Xie2018" class="csl-entry">
+
 Xie, Yihui. 2018. *R Markdown: The Definitive Guide*.
 <https://doi.org/10.1201/9781138359444>.
 
+</div>
+
+<div id="ref-Xie2020" class="csl-entry">
+
 Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. *R Markdown
 Cookbook*. <https://doi.org/10.1201/9781003097471>.
+
+</div>
+
+</div>
