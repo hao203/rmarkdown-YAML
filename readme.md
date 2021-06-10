@@ -1,7 +1,7 @@
 YAML metadata for R Markdown with examples
 ================
 Hao Liang
-2021-04-27
+2021-06-10
 
 -   [YAML metadata (header) in R
     Markdown](#yaml-metadata-header-in-r-markdown)
@@ -229,7 +229,7 @@ Set Top-level Basic R Markdown YAML Fields. e.g.
 title: "YAML metadata for R Markdown with examples"
 subtitle: "YAML header"
 author: Hao Liang
-date: "2021-04-27"
+date: "2021-06-10"
 output:
   md_document:
     toc: yes
@@ -408,7 +408,6 @@ output:
     highlight: tango
     latex_engine: xelatex # try to use xelatex as default
     keep_tex: true
-    keep_tex: true
     template: template.tex
     includes:
       in_header: preamble.tex
@@ -578,7 +577,7 @@ params:
   timezone: "US/Eastern"
 title: "Twitter Coverage of "
 author: "Neil Saunders"
-date: "2021-04-27 10:23:41"
+date: "2021-06-10 20:03:23"
 output:
   github_document
 ---

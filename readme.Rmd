@@ -367,7 +367,6 @@ output:
     highlight: tango
     latex_engine: xelatex # try to use xelatex as default
     keep_tex: true
-    keep_tex: true
     template: template.tex
     includes:
       in_header: preamble.tex

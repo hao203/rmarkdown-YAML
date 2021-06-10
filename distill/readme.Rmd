@@ -1,7 +1,7 @@
 ---
-title: "Distill for R Markdown"
+title: "Distill YAML for R Markdown"
 description: | 
-  Scientific and technical writing, distill examples
+  Scientific and technical writing, distill YAML example
 output:
   github_document: default
   distill::distill_article:
